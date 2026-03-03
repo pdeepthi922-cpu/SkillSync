@@ -4,6 +4,7 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { Badge } from "@/components/ui/badge";
 import { Users, Loader2 } from "lucide-react";
 import api from "@/api/axios";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface PostingItem {
   id: string;
@@ -15,12 +16,17 @@ interface PostingItem {
 const RecruiterDashboard = () => {
   const [postings, setPostings] = useState<PostingItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const { updateUserName } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await api.get("/recruiters/me");
         setPostings(data.profile?.postings || []);
+
+        // Update sidebar name from profile
+        const companyName = data.profile?.companyName;
+        if (companyName) updateUserName(companyName);
       } catch {
         /* fail silently */
       } finally {

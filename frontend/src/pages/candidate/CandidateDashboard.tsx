@@ -10,6 +10,7 @@ import {
   Loader2,
 } from "lucide-react";
 import api from "@/api/axios";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface Posting {
   id: string;
@@ -26,6 +27,7 @@ const CandidateDashboard = () => {
   const [projects, setProjects] = useState<Posting[]>([]);
   const [skillCount, setSkillCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const { updateUserName } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +39,10 @@ const CandidateDashboard = () => {
         setInternships(recsRes.data.internships || []);
         setProjects(recsRes.data.projects || []);
         setSkillCount(profileRes.data.profile?.skills?.length || 0);
+
+        // Update sidebar name from profile (fixes stale localStorage)
+        const profileName = profileRes.data.profile?.name;
+        if (profileName) updateUserName(profileName);
       } catch {
         // Fallback gracefully
       } finally {

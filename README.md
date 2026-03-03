@@ -53,8 +53,8 @@ Traditional internship and project allocation systems rely on keyword matching a
          ▼                        │  PostgreSQL   │
 ┌────────────────────────┐        │  (10 models)  │
 │  Python / FastAPI      │        └───────▲───────┘
-│  (port 8000)           │               │
-│  Resume parsing + NLP  │        Prisma ORM
+│  (port 8000)           │                │
+│  Resume parsing + NLP  │            Prisma ORM
 │  Score calculation     │
 └────────────────────────┘
 ```

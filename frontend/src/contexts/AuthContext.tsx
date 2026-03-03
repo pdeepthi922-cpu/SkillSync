@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const { data } = await api.post("/auth/login", { email, password });
     const mappedUser: User = {
       id: data.user.id,
-      fullName: data.user.email.split("@")[0], // placeholder until profile loads
+      fullName: data.user.displayName || data.user.email.split("@")[0],
       email: data.user.email,
       userType: mapRole(data.user.role),
     };

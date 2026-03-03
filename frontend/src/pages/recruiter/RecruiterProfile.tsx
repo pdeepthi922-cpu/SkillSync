@@ -18,7 +18,7 @@ import api from "@/api/axios";
 
 const RecruiterProfile = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, updateUserName } = useAuth();
   const [editing, setEditing] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -42,6 +42,9 @@ const RecruiterProfile = () => {
           companySize: p.companySize || "",
           totalPostings: p.postings?.length || 0,
         });
+
+        // Update sidebar name from profile
+        if (p.companyName) updateUserName(p.companyName);
       } catch {
         toast.error("Failed to load profile.");
       } finally {
@@ -60,6 +63,7 @@ const RecruiterProfile = () => {
       });
       setEditing(false);
       toast.success("Profile updated successfully!");
+      updateUserName(profile.companyName);
     } catch (err: any) {
       toast.error(err.response?.data?.error || "Failed to update profile.");
     } finally {

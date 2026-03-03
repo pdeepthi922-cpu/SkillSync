@@ -66,7 +66,13 @@ router.post(
   catchAsync(async (req, res) => {
     const data = loginSchema.parse(req.body);
 
-    const user = await prisma.user.findUnique({ where: { email: data.email } });
+    const user = await prisma.user.findUnique({
+      where: { email: data.email },
+      include: {
+        candidateProfile: { select: { name: true } },
+        recruiterProfile: { select: { companyName: true } },
+      },
+    });
     if (!user) throw new ApiError(401, "Invalid email or password.");
 
     const validPassword = await bcrypt.compare(
@@ -77,10 +83,14 @@ router.post(
 
     const token = signToken({ userId: user.id, role: user.role });
 
+    // Resolve the display name from the profile
+    const displayName =
+      user.candidateProfile?.name || user.recruiterProfile?.companyName || null;
+
     res.json({
       message: "Login successful.",
       token,
-      user: { id: user.id, email: user.email, role: user.role },
+      user: { id: user.id, email: user.email, role: user.role, displayName },
     });
   }),
 );

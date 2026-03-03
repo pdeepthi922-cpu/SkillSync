@@ -91,6 +91,9 @@ const CandidateProfile = () => {
         );
         setProjects(p.projects || []);
         setExperiences(p.experience || []);
+
+        // Update sidebar display name from profile
+        if (p.name) updateUserName(p.name);
       } catch {
         toast.error("Failed to load profile.");
       } finally {
