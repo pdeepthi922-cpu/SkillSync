@@ -82,8 +82,8 @@ Traditional internship and project allocation systems rely on keyword matching a
 ### 1. Clone & Setup Database
 
 ```bash
-git clone https://github.com/pdeepthi922-cpu/synaptix26_DreamDevelopers.git
-cd synaptix26_DreamDevelopers
+git clone https://github.com/pdeepthi922-cpu/SkillSync.git
+cd SkillSync
 ```
 
 ```sql
