@@ -53,7 +53,7 @@ const Login = () => {
     <>
       {/* Back to home — outside paper-texture so `fixed` is not overridden */}
       <button
-        onClick={() => navigate("/#root")}
+        onClick={() => navigate("/")}
         className="fixed top-5 left-5 z-50 flex items-center gap-1.5 text-sm text-retro-brown hover:text-retro-charcoal font-medium transition-colors bg-retro-beige/80 backdrop-blur-sm px-3 py-1.5 rounded-lg"
       >
         <ArrowLeft className="h-4 w-4" />
