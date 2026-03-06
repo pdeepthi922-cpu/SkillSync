@@ -238,7 +238,7 @@ const CandidateProfile = () => {
       await api.delete("/auth/account");
       toast.success("Account deleted successfully.");
       logout();
-      navigate("/#root");
+      navigate("/");
     } catch (err: any) {
       toast.error(err.response?.data?.error || "Failed to delete account.");
     }
