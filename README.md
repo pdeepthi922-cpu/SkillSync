@@ -92,7 +92,7 @@ Traditional internship and project allocation systems rely on keyword matching a
 ### 1. Clone & Setup Database
 
 ```bash
-git clone git remote add origin  https://github.com/Kaustubh-Thallam/skill-sync.git
+git clone https://github.com/pdeepthi922-cpu/SkillSync.git
 cd SkillSync
 ```
 
@@ -168,7 +168,7 @@ Run `npx prisma db seed` to populate sample data. **Password for all: `password1
 ## 📁 Project Structure
 
 ```
-synaptix26_DreamDevelopers/
+SkillSync/
 ├── frontend/               # React + Vite SPA (see frontend/README.md)
 │   ├── src/pages/          # 19 pages (4 public + 8 candidate + 7 recruiter)
 │   ├── src/components/     # 10 custom + 49 Shadcn UI components
